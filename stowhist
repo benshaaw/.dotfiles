@@ -1,0 +1,14 @@
+   58  stow -t ~/.config/i3 i3
+   92  stow i3blocks
+  100  stow i3blocks
+  162  stow -t ~/.emacs.d emacs
+  164  stow -t ~/.emacs.d emacs
+  264  stow -t ~/.config/ compton 
+  436  stow latexmk
+  461  stow -t ~/.config/i3
+  462  stow -t ~/.config/i3 i3scripts
+  606  stow zsh
+  619  stow -t ~/.screenlayout xrandr
+  716  stow -t ~/.config/rofi rofi
+  725  stow -t ~/.config/rofi rofi
+ 1727  history | grep stow
