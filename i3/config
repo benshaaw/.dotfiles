@@ -143,8 +143,8 @@ bindsym $mod+Shift+w move workspace to output left
 
 # Volume and backlight control
 bindsym $mod+Shift+o exec --no-startup-id amixer sset Master 1+ toggle
-bindsym $mod+Shift+u exec --no-startup-id pactl set-sink-volume 0 +5%
-bindsym $mod+Shift+i exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym $mod+Shift+u exec --no-startup-id amixer sset Master 5%+
+bindsym $mod+Shift+i exec --no-startup-id amixer sset Master 5%-
 bindsym --release XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
 bindsym --release XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
 
@@ -167,6 +167,9 @@ bindsym $mod+Escape mode "$mode_system"
 
 # Screenshot
 bindsym $mod+Shift+p exec --no-startup-id import -window root /home/ben/pictures/screenshots/`date "+%d_%m_%Y__%H_%M_%S"`.png
+
+# Invert scroll
+exec --no-startup-id 'xinput set-button-map 11 1 2 3 5 4 6 7'
 
 ########################
 ### END USER CONFIGS ###

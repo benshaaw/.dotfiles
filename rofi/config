@@ -15,3 +15,7 @@ rofi.width: 20
 rofi.lines: 5
 rofi.padding: 10
 rofi.yoffset: -200
+
+! Behaviour
+rofi.fuzzy: true
+rofi.glob: false
