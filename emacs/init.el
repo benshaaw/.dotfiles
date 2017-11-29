@@ -9,13 +9,13 @@
  '(custom-enabled-themes (quote (dracula)))
  '(custom-safe-themes
    (quote
-    ("ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" "d9129a8d924c4254607b5ded46350d68cc00b6e38c39fc137c3cfb7506702c12" "3ff840641a718fbd6efa0cb48cb22bab610e935aca128783ce33014ebffc6e7b" "46f1275ae8a7e73bb63fb13db781980092289d032b4d32ca3819c961e0c0fa4c" "52a693830a0125b1188addabaadcdb04af67121fd15d395b967e404598941dc3" "3169fccee5b97e9f62459cf8aa628f3a423ebec4dabd361fc4b276d3fdd7ede6" "b887c858a4ced1799ab682f6f3ecaed264759b39e3a017d5795430b2213e11e9" "eb0a314ac9f75a2bf6ed53563b5d28b563eeba938f8433f6d1db781a47da1366" "f7f1658c29c47b10946cd7f9948a8620ad83de90fdb27d71345b5e3416050aac" "e58c0aa9864b9def98b830202fc0e338c175ca6a385b90bcd2fc97a7ba3829ac" "d9068fd376a4e49c4bf820b2afce047b7fbd3ffea6d65f6d169c55cdc7510a24" "3dddc5908694a79b0b57a01f055bb716af900fc87fea02c32666b8f440724c34" "3be096aeee1f2371814f43b58825d4d21307cc20b449d90ba7637c502662c80f" "fa7da9b007614cf0d02b58a4bc59687e03e69a0a8ea32c4fb7be775581abaf97" "715fdcd387af7e963abca6765bd7c2b37e76154e65401cd8d86104f22dd88404" default)))
+    ("b97a01622103266c1a26a032567e02d920b2c697ff69d40b7d9956821ab666cc" "ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" "d9129a8d924c4254607b5ded46350d68cc00b6e38c39fc137c3cfb7506702c12" "3ff840641a718fbd6efa0cb48cb22bab610e935aca128783ce33014ebffc6e7b" "46f1275ae8a7e73bb63fb13db781980092289d032b4d32ca3819c961e0c0fa4c" "52a693830a0125b1188addabaadcdb04af67121fd15d395b967e404598941dc3" "3169fccee5b97e9f62459cf8aa628f3a423ebec4dabd361fc4b276d3fdd7ede6" "b887c858a4ced1799ab682f6f3ecaed264759b39e3a017d5795430b2213e11e9" "eb0a314ac9f75a2bf6ed53563b5d28b563eeba938f8433f6d1db781a47da1366" "f7f1658c29c47b10946cd7f9948a8620ad83de90fdb27d71345b5e3416050aac" "e58c0aa9864b9def98b830202fc0e338c175ca6a385b90bcd2fc97a7ba3829ac" "d9068fd376a4e49c4bf820b2afce047b7fbd3ffea6d65f6d169c55cdc7510a24" "3dddc5908694a79b0b57a01f055bb716af900fc87fea02c32666b8f440724c34" "3be096aeee1f2371814f43b58825d4d21307cc20b449d90ba7637c502662c80f" "fa7da9b007614cf0d02b58a4bc59687e03e69a0a8ea32c4fb7be775581abaf97" "715fdcd387af7e963abca6765bd7c2b37e76154e65401cd8d86104f22dd88404" default)))
  '(custom-theme-load-path
    (quote
     ("/home/ben/.emacs.d/elpa/hamburg-theme-20160122.2340/" "/home/ben/.emacs.d/elpa/solarized-theme-20160901.334/" custom-theme-directory t "/home/ben/.emacs.d/elpa/dracula-theme-20161119.1345/")) t)
  '(package-selected-packages
    (quote
-    (magit auctex-latexmk auctex powerline helm-swoop dracula-theme))))
+    (web-mode flymd markdown-mode pdf-tools helm-flyspell magit auctex-latexmk auctex helm-swoop dracula-theme))))
 
 ;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Key Bindings ;;;;
@@ -96,6 +96,11 @@
 (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+
+;; PDF Tools call and hook
+(pdf-tools-install)
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
 ;; Jedi (Python auto-complete)
 (add-hook 'python-mode-hook 'jedi:setup)
@@ -112,16 +117,13 @@
 			   'text-mode
 			   'help-mode
 			   'minibuffer-prompt
+			   'pdf-view-mode
 			   )))
       (linum-mode))))
 
 ;; SQL Indentation
 (eval-after-load "sql"
   '(load-library "~/.emacs.d/minor_modes/sql_indent/sql-indent.el"))
-
-;; Powerline
-(require 'powerline)
-(powerline-default-theme)
 
 ;; Theme
 (if (display-graphic-p) (load-theme 'dracula))
